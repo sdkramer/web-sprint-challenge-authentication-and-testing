@@ -52,24 +52,24 @@ describe('test register user endpoint after implementation', () => {
 })
 
 
-// describe('test login endpoint', () => {
-// it('allows registered user to login', async () => {
-// const res = await supertest(server)
-// .post('/api/auth/login')
-// .send(userA)
+describe('test login endpoint', () => {
+it('allows registered user to login', async () => {
+const res = await supertest(server)
+.post('/api/auth/login')
+.send(userA)
 
-// expect(res.statusCode).toBe(200)
-// })
+expect(res.statusCode).toBe(200)
+})
 
-// it('includes token in response', async () => {
-//   const res = await supertest(server)
-//   .post('/api/auth/login')
-//   .send(userA)
+it('includes token in response', async () => {
+  const res = await supertest(server)
+  .post('/api/auth/login')
+  .send(userA)
 
-//   expect(res.body).toHaveProperty('token')
-// })
+  expect(res.body).toHaveProperty('token')
+})
 
-// })
+})
 
 
 
@@ -82,12 +82,12 @@ it('returns an error when sent without token', async () => {
   expect(res.statusCode).toBe(401)
 })
 
-  it('gets list of jokes when authorized', async () => {
-    const res = await supertest(server).get('/api/jokes')
+  // it('gets list of jokes when authorized', async () => {
+  //   const res = await supertest(server).get('/api/jokes')
 
-    expect(res.statusCode).toBe(200)
-    expect(res.type).toBe('application/json')
-    // console.log('res.body: ', res.body)
-    expect(res.body.length).toBe(3)
-  })
+  //   expect(res.statusCode).toBe(200)
+  //   expect(res.type).toBe('application/json')
+  //   // console.log('res.body: ', res.body)
+  //   expect(res.body.length).toBe(3)
+  // })
 })

@@ -33,6 +33,20 @@ router.post('/register', async (req, res, next) => {
 
   const { username, password } = req.body
 
+  if(!username || !password) {
+    return res.status(401).json({
+      message: "username and password required"
+    })
+  }
+
+  const user = await db('users').where('username', username).first()
+
+  if(user) {
+    res.json({
+      message: "username taken"
+    })
+  }
+
   const newUser = await db('users').insert({
     username,
     password: await bcrypt.hash(password, 12)
@@ -72,6 +86,12 @@ router.post('/login', async (req, res, next) => {
   */
  try {
   const { username, password } = req.body
+
+  if(!username || !password) {
+    return res.status(401).json({
+      message: "username and password required"
+    })
+  }
   
   const user = await db('users').where('username', username).first()
   
